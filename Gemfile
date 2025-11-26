@@ -30,7 +30,7 @@ gem 'sprockets-rails'
 
 gem "sassc-rails"
 
-gem 'faker', '~> 2.21'
+gem 'faker', '~> 3.5'
 
 gem 'nokogiri'
 
