@@ -1,13 +1,19 @@
 <h1>All Products</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Price</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+    </tr>
+  </thead>
 
-  <%= render @products %>
+  <tbody>
+    <%= render @products %>
+  </tbody>
 </table>
 
-<%= paginate @products %>
+<div class="pagination">
+  <%= paginate @products %>
+</div>

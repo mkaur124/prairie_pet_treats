@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # Devise routes for regular users
   devise_for :users
 
-  resources :products, only: [:index, :show]
+  # Product and category resources
+  resources :products, only: [:index, :show]   # add :new, :create, etc. if needed
+  resources :categories, only: [:index, :show]
 
   # Static/dynamic pages (About, Contact, Shipping, Returns)
   # These will use the slug (e.g., /about, /contact)
