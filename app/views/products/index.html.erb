@@ -1,4 +1,12 @@
 <h1>All Products</h1>
+<!-- Category Filter -->
+<p>
+  Filter by category:
+  <% Category.all.each do |category| %>
+    <%= link_to category.name, products_path(category: category.name) %> |
+  <% end %>
+  <%= link_to "All", products_path %>
+</p>
 
 <table>
   <thead>

@@ -1,4 +1,7 @@
 <h2><%= @product.name %></h2>
+
 <p>Category: <%= @product.category ? @product.category.name : "No Category" %></p>
 <p>Price: <%= number_to_currency(@product.price) %></p>
 <p>Description: <%= @product.description %></p>
+
+<%= link_to "Back to Products", products_path %>
