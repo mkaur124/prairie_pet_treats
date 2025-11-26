@@ -6,12 +6,12 @@ class ProductsController < ApplicationController
                          .where(categories: { name: params[:category] })
                          .order(created_at: :desc)
                          .page(params[:page])
-                         .per(12)
+                         .per(20)
     else
       # Show all products if no category selected
       @products = Product.order(created_at: :desc)
                          .page(params[:page])
-                         .per(12)
+                         .per(20)
     end
   end
 end
