@@ -1,0 +1,31 @@
+<h1>Invoice</h1>
+
+<p>Customer: <%= @order.customer.name %></p>
+<p>Address: <%= @order.customer.address %>, <%= @order.customer.province %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= number_to_currency(item.price * item.quantity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
+<p>Tax: <%= number_to_currency(@order.tax) %></p>
+<p>Total: <%= number_to_currency(@order.total) %></p>
+
+<%= link_to "Back to Products", products_path %>

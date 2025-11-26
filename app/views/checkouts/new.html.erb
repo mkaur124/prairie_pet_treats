@@ -1,0 +1,38 @@
+<h1>Checkout</h1>
+
+<% if @customer.errors.any? %>
+  <div class="alert alert-danger">
+    <h2><%= pluralize(@customer.errors.count, "error") %> prevented this order from being placed:</h2>
+    <ul>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @customer, url: checkout_path, local: true do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :province %><br>
+    <%= f.text_field :province %>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <%= f.submit "Place Order", class: "btn btn-primary" %>
+  </div>
+<% end %>

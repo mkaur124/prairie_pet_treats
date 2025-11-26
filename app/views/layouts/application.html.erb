@@ -11,14 +11,18 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/icon.png">
 
-
-
   <!-- Rails 8 CSS -->
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all" %>
-
 </head>
 
 <body>
+  <!-- Flash messages -->
+  <% flash.each do |key, message| %>
+    <div class="flash <%= key %>">
+      <%= message %>
+    </div>
+  <% end %>
+
   <%= yield %>
 </body>
 </html>

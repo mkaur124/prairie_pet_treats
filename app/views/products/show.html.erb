@@ -4,4 +4,6 @@
 <p>Price: <%= number_to_currency(@product.price) %></p>
 <p>Description: <%= @product.description %></p>
 
+<%= button_to "Add to Cart", cart_add_path(product_id: @product.id), method: :post %>
+
 <%= link_to "Back to Products", products_path %>

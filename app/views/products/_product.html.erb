@@ -1,5 +1,26 @@
 <tr>
-  <td><%= link_to product.name, product_path(product) %></td>
+  <td>
+    <%= link_to product.name, product_path(product) %>
+
+    <%# 🟢 NEW badge: only if "New" filter is active %>
+    <% if params[:filter] == "new" && product.created_at >= 3.days.ago %>
+      <span style="background:#28a745; color:white; padding:2px 6px; border-radius:4px; font-size:12px;">
+        NEW
+      </span>
+    <% end %>
+
+    <%# 🟡 UPDATED badge: only if "Updated" filter is active %>
+    <% if params[:filter] == "updated" && product.updated_at >= 3.days.ago && product.created_at < 3.days.ago %>
+      <span style="background:#ffc107; color:black; padding:2px 6px; border-radius:4px; font-size:12px;">
+        UPDATED
+      </span>
+    <% end %>
+  </td>
+
   <td><%= product.category&.name || "No Category" %></td>
   <td><%= number_to_currency(product.price) %></td>
+
+  <td>
+    <%= button_to "Add to Cart", cart_add_path(product_id: product.id), method: :post %>
+  </td>
 </tr>

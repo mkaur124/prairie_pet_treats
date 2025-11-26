@@ -1,0 +1,47 @@
+<h1>Your Shopping Cart</h1>
+
+<% if session[:cart].blank? %>
+  <p>Your cart is empty.</p>
+<% else %>
+  <%= form_with url: cart_update_path, method: :post, local: true do %>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% session[:cart].each do |product_id, quantity| %>
+          <% product = Product.find_by(id: product_id) %>
+          <% next unless product %>
+          <tr>
+            <td><%= product.name %></td>
+            <td>
+              <%= number_field_tag "quantities[#{product.id}]", quantity, min: 0 %>
+            </td>
+            <td><%= number_to_currency(product.price * quantity) %></td>
+            <td>
+              <%= button_to "Remove", cart_remove_path(product_id: product.id), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <p>
+      <strong>Total:</strong>
+      <%= number_to_currency(session[:cart].sum { |product_id, qty| Product.find(product_id).price * qty }) %>
+    </p>
+
+    <%= submit_tag "Update Cart" %>
+  <% end %>
+
+  <%= link_to "Continue Shopping", products_path %>
+
+  <!-- NEW: Proceed to Checkout button -->
+  <%= link_to "Proceed to Checkout", new_checkout_path, class: "btn btn-primary", style: "margin-left: 10px;" %>
+
+<% end %>
