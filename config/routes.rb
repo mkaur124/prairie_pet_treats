@@ -6,16 +6,15 @@ Rails.application.routes.draw do
   # Devise routes for regular users
   devise_for :users
 
-  # Route for static/dynamic pages (like About, Contact)
-  resources :pages, only: [:show]
+  resources :products, only: [:index, :show]
 
-  # Root path of your site
+  # Static/dynamic pages (About, Contact, Shipping, Returns)
+  # These will use the slug (e.g., /about, /contact)
+  get "/:slug", to: "pages#show", as: :static_page
+
+  # Root path
   root "products#index"
 
-  # Health check endpoint for uptime monitoring
+  # Health check
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Optional PWA routes (uncomment if you implement PWA)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 end

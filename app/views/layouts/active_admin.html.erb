@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Prairie Pet Treats</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- ActiveAdmin CSS -->
+  <%= stylesheet_link_tag "active_admin", media: "all" %>
+
+  <!-- Rails 8 JS via Importmap -->
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

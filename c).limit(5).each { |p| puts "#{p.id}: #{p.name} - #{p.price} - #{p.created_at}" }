@@ -1,0 +1,60 @@
+=> 
+[[32m#<Product:0x00007a7e9b3beb08[0m
+  id: [34m[1m102[0m,
+  name: [31m[1m"[0m[31mTest Treat[0m[31m[1m"[0m,
+  description: [31m[1m"[0m[31mJust a test[0m[31m[1m"[0m,
+  price: [35m[1m0.999e1[0m,
+  stock_quantity: [34m[1m10[0m,
+  created_at:
+   [31m[1m"[0m[31m2025-11-25 21:35:03.051696000 +0000[0m[31m[1m"[0m,
+  updated_at:
+   [31m[1m"[0m[31m2025-11-25 21:35:03.051696000 +0000[0m[31m[1m"[0m,
+  category_id: [36m[1mnil[0m[32m>[0m,
+ [32m#<Product:0x00007a7e9b3be888[0m
+  id: [34m[1m100[0m,
+  name: [31m[1m"[0m[31mFingerlime Treat[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mThree eggs with cilantro, tomatoes, onions, avocad...[0m[31m[1m"[0m,
+  price: [35m[1m0.576e1[0m,
+  stock_quantity: [34m[1m78[0m,
+  created_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.870569000 +0000[0m[31m[1m"[0m,
+  updated_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.870569000 +0000[0m[31m[1m"[0m,
+  category_id: [34m[1m2[0m[32m>[0m,
+ [32m#<Product:0x00007a7e9b3be608[0m
+  id: [34m[1m99[0m,
+  name: [31m[1m"[0m[31mPear Juice Treat[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mGranny Smith apples mixed with brown sugar and but...[0m[31m[1m"[0m,
+  price: [35m[1m0.2446e2[0m,
+  stock_quantity: [34m[1m95[0m,
+  created_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.866696000 +0000[0m[31m[1m"[0m,
+  updated_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.866696000 +0000[0m[31m[1m"[0m,
+  category_id: [34m[1m2[0m[32m>[0m,
+ [32m#<Product:0x00007a7e9b3bdfc8[0m
+  id: [34m[1m98[0m,
+  name: [31m[1m"[0m[31mMonkfish Treat[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mThick slices of French toast bread, brown sugar, h...[0m[31m[1m"[0m,
+  price: [35m[1m0.2057e2[0m,
+  stock_quantity: [34m[1m20[0m,
+  created_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.863402000 +0000[0m[31m[1m"[0m,
+  updated_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.863402000 +0000[0m[31m[1m"[0m,
+  category_id: [34m[1m3[0m[32m>[0m,
+ [32m#<Product:0x00007a7e9b3bde88[0m
+  id: [34m[1m97[0m,
+  name: [31m[1m"[0m[31mProvolone Treat[0m[31m[1m"[0m,
+  description:
+   [31m[1m"[0m[31mThree egg omelet with Roquefort cheese, chives, an...[0m[31m[1m"[0m,
+  price: [35m[1m0.948e1[0m,
+  stock_quantity: [34m[1m51[0m,
+  created_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.860159000 +0000[0m[31m[1m"[0m,
+  updated_at:
+   [31m[1m"[0m[31m2025-11-25 20:41:55.860159000 +0000[0m[31m[1m"[0m,
+  category_id: [34m[1m1[0m[32m>[0m]

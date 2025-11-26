@@ -1,11 +1,12 @@
 ActiveAdmin.register Page do
-  permit_params :title, :content
+   config.sort_order = 'id_asc'
+  permit_params :title, :content, :slug
 
-  # Optional: custom form
   form do |f|
     f.inputs do
       f.input :title
-      f.input :content
+      f.input :content, as: :text
+      f.input :slug
     end
     f.actions
   end

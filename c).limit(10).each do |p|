@@ -1,0 +1,29 @@
+=> 
+[[32m#<Category:0x00007b0c4f073c68[0m
+  id: [34m[1m1[0m,
+  name: [31m[1m"[0m[31mBeef[0m[31m[1m"[0m,
+  product_count: [34m[1m0[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e0660[0m
+  id: [34m[1m2[0m,
+  name: [31m[1m"[0m[31mChicken[0m[31m[1m"[0m,
+  product_count: [34m[1m0[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e0520[0m
+  id: [34m[1m3[0m,
+  name: [31m[1m"[0m[31mPeanut Butter[0m[31m[1m"[0m,
+  product_count: [34m[1m0[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e03e0[0m
+  id: [34m[1m4[0m,
+  name: [31m[1m"[0m[31mVariety Pack[0m[31m[1m"[0m,
+  product_count: [34m[1m0[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e02a0[0m
+  id: [34m[1m5[0m,
+  name: [31m[1m"[0m[31mTreats[0m[31m[1m"[0m,
+  product_count: [34m[1m28[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e0160[0m
+  id: [34m[1m6[0m,
+  name: [31m[1m"[0m[31mChews[0m[31m[1m"[0m,
+  product_count: [34m[1m27[0m[32m>[0m,
+ [32m#<Category:0x00007b0c6d0e0020[0m
+  id: [34m[1m7[0m,
+  name: [31m[1m"[0m[31mSnacks[0m[31m[1m"[0m,
+  product_count: [34m[1m45[0m[32m>[0m]

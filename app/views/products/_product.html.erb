@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to product.name, product_path(product) %></td>
+  <td><%= product.category ? product.category.name : "No Category" %></td>
+  <td><%= number_to_currency(product.price) %></td>
+</tr>
