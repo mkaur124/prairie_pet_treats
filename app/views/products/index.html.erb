@@ -1,12 +1,26 @@
 <h1>All Products</h1>
+
 <!-- Category Filter -->
 <p>
-  Filter by category:
+  <strong>Filter by category:</strong><br>
   <% Category.all.each do |category| %>
     <%= link_to category.name, products_path(category: category.name) %> |
   <% end %>
   <%= link_to "All", products_path %>
 </p>
+
+<hr>
+
+<!-- Product Filters -->
+<p>
+  <strong>Quick Filters:</strong><br>
+  <%= link_to "On Sale", products_path(filter: "sale") %> |
+  <%= link_to "New (last 3 days)", products_path(filter: "new") %> |
+  <%= link_to "Recently Updated (last 3 days)", products_path(filter: "updated") %> |
+  <%= link_to "Clear Filters", products_path %>
+</p>
+
+<hr>
 
 <table>
   <thead>
