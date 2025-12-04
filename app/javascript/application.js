@@ -1,3 +1,4 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+// Import Rails UJS (for method: :delete links)
+import "@rails/ujs"
 import "@hotwired/turbo-rails"
 import "controllers"

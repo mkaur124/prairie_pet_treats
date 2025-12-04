@@ -1,7 +1,14 @@
 <h1>Invoice</h1>
 
 <p>Customer: <%= @order.customer.name %></p>
-<p>Address: <%= @order.customer.address %>, <%= @order.customer.province %></p>
+<p>
+  Address:
+  <% if @order.customer.address.present? %>
+    <%= @order.customer.address %>, <%= @order.customer.province&.name %>
+  <% else %>
+    <%= @order.customer.province&.name || "No province selected" %> (no street address provided)
+  <% end %>
+</p>
 
 <table>
   <thead>
@@ -25,7 +32,19 @@
 </table>
 
 <p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
-<p>Tax: <%= number_to_currency(@order.tax) %></p>
+<p>GST: <%= number_to_currency(@order.gst) %></p>
+<p>PST: <%= number_to_currency(@order.pst) %></p>
+<p>HST: <%= number_to_currency(@order.hst) %></p>
+<p>Total Tax: <%= number_to_currency(@order.tax) %></p>
 <p>Total: <%= number_to_currency(@order.total) %></p>
 
-<%= link_to "Back to Products", products_path %>
+<p>Status: <strong><%= @order.paid? ? "Paid" : "Unpaid" %></strong></p>
+
+<div style="margin-top: 10px;">
+  <%= link_to "Back to Products", products_path, class: "btn btn-secondary" %>
+  <%= link_to "View Order", order_path(@order), class: "btn btn-primary" %>
+
+  <% unless @order.paid? %>
+    <%= button_to "Pay with Credit Card (Test)", fake_payment_path(order_id: @order.id), method: :post, class: "btn btn-success" %>
+  <% end %>
+</div>

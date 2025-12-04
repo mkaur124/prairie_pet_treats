@@ -1,9 +1,11 @@
 <h1>Your Shopping Cart</h1>
 
-<% if session[:cart].blank? %>
+<% if @cart_items.empty? %>
   <p>Your cart is empty.</p>
 <% else %>
-  <%= form_with url: cart_update_path, method: :post, local: true do %>
+
+  <!-- UPDATE CART FORM -->
+  <%= form_with url: cart_update_path, method: :post, local: true, data: { turbo: false } do %>
     <table>
       <thead>
         <tr>
@@ -14,34 +16,41 @@
         </tr>
       </thead>
       <tbody>
-        <% session[:cart].each do |product_id, quantity| %>
-          <% product = Product.find_by(id: product_id) %>
-          <% next unless product %>
+        <% @cart_items.each do |item| %>
           <tr>
-            <td><%= product.name %></td>
+            <td><%= item[:product].name %></td>
+
+            <!-- QUANTITY FIELD -->
             <td>
-              <%= number_field_tag "quantities[#{product.id}]", quantity, min: 0 %>
+              <%= number_field_tag "quantities[#{item[:product].id}]", item[:quantity], min: 0 %>
             </td>
-            <td><%= number_to_currency(product.price * quantity) %></td>
+
+            <!-- LINE PRICE -->
+            <td><%= number_to_currency(item[:product].price * item[:quantity]) %></td>
+
+            <!-- REMOVE BUTTON — FIXED (NO nested form) -->
             <td>
-              <%= button_to "Remove", cart_remove_path(product_id: product.id), method: :delete %>
+              <%= link_to "Remove",
+                    cart_remove_path(product_id: item[:product].id),
+                    method: :delete,
+                    data: { turbo: false },
+                    class: "inline-remove-btn" %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
 
-    <p>
-      <strong>Total:</strong>
-      <%= number_to_currency(session[:cart].sum { |product_id, qty| Product.find(product_id).price * qty }) %>
+    <p><strong>Total:</strong>
+      <%= number_to_currency(@cart_items.sum { |item| item[:product].price * item[:quantity] }) %>
     </p>
 
     <%= submit_tag "Update Cart" %>
   <% end %>
 
+  <!-- LINKS -->
   <%= link_to "Continue Shopping", products_path %>
-
-  <!-- NEW: Proceed to Checkout button -->
-  <%= link_to "Proceed to Checkout", new_checkout_path, class: "btn btn-primary", style: "margin-left: 10px;" %>
+  <%= link_to "Proceed to Checkout", new_checkout_path,
+        class: "btn btn-primary", style: "margin-left: 10px;" %>
 
 <% end %>

@@ -15,3 +15,18 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+.status_tag.pending {
+  background-color: #f0ad4e;   // orange
+}
+
+.status_tag.paid {
+  background-color: #5cb85c;   // green
+}
+
+.status_tag.shipped {
+  background-color: #0275d8;   // blue
+}
+
+.status_tag.cancelled {
+  background-color: #d9534f;   // red
+}

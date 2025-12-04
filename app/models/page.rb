@@ -1,5 +1,10 @@
 class Page < ApplicationRecord
 
+  # VALIDATIONS
+  validates :title, presence: true
+  validates :slug, presence: true
+  validates :content, presence: true
+
   # Add this method to allow searching on specific columns
   def self.ransackable_attributes(auth_object = nil)
     %w[id title slug content created_at updated_at]

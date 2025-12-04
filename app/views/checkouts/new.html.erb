@@ -11,28 +11,44 @@
   </div>
 <% end %>
 
-<%= form_with model: @customer, url: checkout_path, local: true do |f| %>
+<%= form_with url: checkout_path, method: :post, local: true do %>
+
   <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= label_tag 'customer[name]', 'Name' %><br>
+    <%= text_field_tag 'customer[name]', @customer.name %>
   </div>
 
   <div>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
+    <%= label_tag 'customer[email]', 'Email' %><br>
+    <%= email_field_tag 'customer[email]', @customer.email %>
   </div>
 
   <div>
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= label_tag 'customer[address]', 'Address' %><br>
+    <%= text_field_tag 'customer[address]', @customer.address %>
   </div>
 
   <div>
-    <%= f.label :province %><br>
-    <%= f.text_field :province %>
+    <%= label_tag 'customer[province_id]', 'Province' %><br>
+    <%= select_tag 'customer[province_id]',
+          options_from_collection_for_select(Province.all, :id, :name, @customer.province_id),
+          prompt: "Select your province" %>
   </div>
+
+  <% unless customer_signed_in? %>
+    <div>
+      <%= label_tag 'customer[password]', 'Password' %><br>
+      <%= password_field_tag 'customer[password]' %>
+    </div>
+
+    <div>
+      <%= label_tag 'customer[password_confirmation]', 'Password Confirmation' %><br>
+      <%= password_field_tag 'customer[password_confirmation]' %>
+    </div>
+  <% end %>
 
   <div style="margin-top: 10px;">
-    <%= f.submit "Place Order", class: "btn btn-primary" %>
+    <%= submit_tag "Place Order", class: "btn btn-primary" %>
   </div>
+
 <% end %>

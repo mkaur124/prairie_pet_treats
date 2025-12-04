@@ -1,54 +1,79 @@
-<h1>All Products</h1>
+<div class="container my-5">
+  <!-- Breadcrumbs -->
+  <%= breadcrumbs(["Home", root_path], ["All Products", products_path]) %>
 
-<!-- Product Search -->
-<%= form_with url: products_path, method: :get, local: true do %>
-  <label><strong>Search Products:</strong></label>
-  <%= text_field_tag :keyword, params[:keyword], placeholder: "Enter keyword..." %>
+  <h1 class="text-center mb-4" style="color: #ff8c69;">All Products</h1>
 
-  <%= select_tag :search_category_id,
-        options_from_collection_for_select(Category.all, :id, :name, params[:search_category_id]),
-        include_blank: "All Categories" %>
+  <!-- Product Search -->
+  <div class="card p-3 mb-4 shadow-sm">
+    <%= form_with url: products_path, method: :get, local: true, class: "row g-2 align-items-center" do %>
+      <div class="col-md-5">
+        <%= text_field_tag :keyword, params[:keyword], placeholder: "Enter keyword...", class: "form-control" %>
+      </div>
 
-  <%= submit_tag "Search" %>
-<% end %>
+      <div class="col-md-4">
+        <%= select_tag :search_category_id,
+              options_from_collection_for_select(Category.all, :id, :name, params[:search_category_id]),
+              include_blank: "All Categories", class: "form-select" %>
+      </div>
 
-<br>
+      <div class="col-md-3">
+        <%= submit_tag "Search", class: "btn btn-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
 
-<!-- Quick Filters -->
-<p>
-  <strong>Quick Filters:</strong>
-  <%= link_to "New (last 3 days)", products_path(filter: "new", keyword: params[:keyword], search_category_id: params[:search_category_id]) %> |
-  <%= link_to "Recently Updated (last 3 days)", products_path(filter: "updated", keyword: params[:keyword], search_category_id: params[:search_category_id]) %> |
-  <%= link_to "Clear Filters", products_path %>
-</p>
+  <!-- Quick Filters -->
+  <div class="mb-3">
+    <strong>Quick Filters:</strong>
+    <%= link_to "New (last 3 days)", products_path(filter: "new", keyword: params[:keyword], search_category_id: params[:search_category_id]), class: "btn btn-outline-secondary btn-sm mx-1 mb-1" %>
+    <%= link_to "Recently Updated (last 3 days)", products_path(filter: "updated", keyword: params[:keyword], search_category_id: params[:search_category_id]), class: "btn btn-outline-secondary btn-sm mx-1 mb-1" %>
+    <%= link_to "Clear Filters", products_path, class: "btn btn-outline-danger btn-sm mx-1 mb-1" %>
+  </div>
 
-<hr>
+  <hr>
 
-<!-- Category Filter (separate dropdown at bottom) -->
-<%= form_with url: products_path, method: :get, local: true do %>
-  <label><strong>Filter by Category:</strong></label>
-  <%= select_tag :category_id,
-        options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
-        include_blank: "All Categories" %>
-  <%= submit_tag "Apply" %>
-<% end %>
+  <!-- Category Filter -->
+  <div class="card p-3 mb-4 shadow-sm">
+    <%= form_with url: products_path, method: :get, local: true, class: "row g-2 align-items-center" do %>
+      <div class="col-md-8">
+        <%= select_tag :category_id,
+              options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
+              include_blank: "All Categories", class: "form-select" %>
+      </div>
 
-<hr>
+      <div class="col-md-4">
+        <%= submit_tag "Apply", class: "btn btn-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price</th>
-    </tr>
-  </thead>
+  <hr>
 
-  <tbody>
-    <%= render @products %>
-  </tbody>
-</table>
+  <!-- Products Grid (Bootstrap Responsive Grid) -->
+  <div class="row g-4">
+    <% @products.each do |product| %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
 
-<div class="pagination">
-  <%= paginate @products %>
+          <% if product.image.attached? %>
+            <%= image_tag product.image, class: "card-img-top", style: "height: 180px; object-fit: cover;" %>
+          <% end %>
+
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="text-muted mb-1"><%= product.category&.name %></p>
+            <p class="fw-bold"><%= number_to_currency(product.price) %></p>
+            <%= link_to "View Product", product_path(product), class: "btn btn-primary btn-sm" %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @products %>
+  </div>
 </div>

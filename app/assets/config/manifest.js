@@ -7,3 +7,4 @@
 // Link main application CSS (Sprockets only)
 // Do NOT link JS from app/javascript — handled by Importmap
 //= link application.css
+//= link application.js

@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def show
-    @page = Page.find_by(slug: params[:slug])
+    @page = StaticPage.find_by(slug: params[:slug])
     if @page
       render :show
     else

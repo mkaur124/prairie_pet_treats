@@ -1,6 +1,9 @@
 # app/models/static_page.rb
 class StaticPage < ApplicationRecord
-  # other code, validations, associations, etc.
+  # VALIDATIONS
+  validates :title, presence: true
+  validates :slug, presence: true
+  validates :content, presence: true
 
   # Ransack: allow these attributes to be searchable in ActiveAdmin
   def self.ransackable_attributes(auth_object = nil)

@@ -1,0 +1,5 @@
+<%= breadcrumbs(["Home", root_path], [@category.name, category_path(@category)]) %>
+
+<h1><%= @category.name %></h1>
+
+<%= render @category.products %>

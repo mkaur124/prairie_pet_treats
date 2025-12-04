@@ -1,0 +1,238 @@
+// Import Bootstrap (already loaded via CDN, optional for SCSS features)
+// @import "bootstrap";
+
+// ---------- BODY ----------
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+
+  // Background image for cute dog theme
+  background: image-url('smilingdog.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+// ---------- PAGE CONTAINER ----------
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95); // soft overlay for readability
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+// ---------- NAVBAR ----------
+.navbar.navbar-expand-lg {
+  background-color: #ff8c69 !important; // soft coral
+  border-bottom: 3px solid #ff6347; // tomato border
+  border-radius: 0 0 15px 15px;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+  color: #ffd700 !important; // gold hover
+}
+
+// ---------- FLASH MESSAGES ----------
+.alert {
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert.notice {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.alert.alert {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+// ---------- HEADINGS ----------
+h1, h2, h3 {
+  color: #ff6347; // tomato
+  text-align: center;
+}
+
+// ---------- TABLES ----------
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #ff8c69;
+  color: white;
+}
+
+// ---------- FORMS ----------
+input[type="text"], input[type="email"], input[type="password"], select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border-color: #ff6347;
+  outline: none;
+}
+
+input[type="submit"], button {
+  background-color: #ff8c69;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover, button:hover {
+  background-color: #ff6347;
+}
+
+// ---------- PRODUCT CARDS ----------
+.product-card {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+// ---------- BUTTONS ----------
+.btn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #ff8c69;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #ff6347;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #ddd;
+}
+
+// ---------- PAGINATION ----------
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+  padding: 8px 12px;
+  margin: 0 5px;
+  background-color: #ff8c69;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: #ff6347;
+}
+
+/* Products page heading */
+h2.products-title {
+  color: #ff8c69; /* matches your soft coral / orange theme */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Breadcrumb container */
+.breadcrumb {
+  background-color: #fff7e6;  /* soft cream */
+  padding: 8px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+/* Breadcrumb links */
+.breadcrumb a {
+  color: #ff8c69;   /* orange links */
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #ff4500;   /* red on hover */
+}
+
+/* Current page (not link) */
+.breadcrumb .current {
+  font-weight: bold;
+  color: #555; /* dark gray */
+}
+
+/* Separator */
+.breadcrumb li::after {
+  content: "›";
+  margin: 0 5px;
+  color: #999;
+}
+
+.breadcrumb li:last-child::after {
+  content: "";
+}
+
+
+
+

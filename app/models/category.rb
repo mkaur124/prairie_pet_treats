@@ -1,5 +1,9 @@
 class Category < ApplicationRecord
+  # RELATIONSHIP
   has_many :products
+
+  # VALIDATIONS
+  validates :name, presence: true
 
   # Allowlist attributes for Ransack search
   def self.ransackable_attributes(auth_object = nil)

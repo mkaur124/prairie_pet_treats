@@ -1,12 +1,26 @@
 class TaxCalculator
   TAX_RATES = {
-    "ON" => 0.13, "BC" => 0.12, "AB" => 0.05, "QC" => 0.14975,
-    "MB" => 0.12, "SK" => 0.11, "NS" => 0.15, "NB" => 0.15,
-    "NL" => 0.15, "PE" => 0.15, "NT" => 0.05, "YT" => 0.05, "NU" => 0.05
+    "Ontario" => { gst: 0.05, pst: 0.08, hst: 0.0 },
+    "British Columbia" => { gst: 0.05, pst: 0.07, hst: 0.0 },
+    "Alberta" => { gst: 0.05, pst: 0.0, hst: 0.0 },
+    "Quebec" => { gst: 0.05, pst: 0.09975, hst: 0.0 },
+    "Manitoba" => { gst: 0.05, pst: 0.07, hst: 0.0 },
+    "Saskatchewan" => { gst: 0.05, pst: 0.06, hst: 0.0 },
+    "Nova Scotia" => { gst: 0.0, pst: 0.0, hst: 0.15 },
+    "New Brunswick" => { gst: 0.0, pst: 0.0, hst: 0.15 },
+    "Newfoundland and Labrador" => { gst: 0.0, pst: 0.0, hst: 0.15 },
+    "Prince Edward Island" => { gst: 0.05, pst: 0.10, hst: 0.0 },
+    "Northwest Territories" => { gst: 0.05, pst: 0.0, hst: 0.0 },
+    "Yukon" => { gst: 0.05, pst: 0.0, hst: 0.0 },
+    "Nunavut" => { gst: 0.05, pst: 0.0, hst: 0.0 }
   }
 
-  def self.calculate(subtotal, province)
-    rate = TAX_RATES[province] || 0
-    (subtotal * rate).round(2)
+  def self.calculate(subtotal, province_name)
+    rates = TAX_RATES[province_name] || { gst: 0.0, pst: 0.0, hst: 0.0 }
+    gst = (subtotal * rates[:gst]).round(2)
+    pst = (subtotal * rates[:pst]).round(2)
+    hst = (subtotal * rates[:hst]).round(2)
+    total_tax = (gst + pst + hst).round(2)
+    { gst: gst, pst: pst, hst: hst, total_tax: total_tax }
   end
 end

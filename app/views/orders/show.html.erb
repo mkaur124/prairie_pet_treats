@@ -1,0 +1,19 @@
+<h1>Order #<%= @order.id %></h1>
+
+<ul>
+  <% @order.order_items.each do |item| %>
+    <li>
+      <%= item.product.name %> – Quantity: <%= item.quantity %> – Price: <%= item.price %>
+    </li>
+  <% end %>
+</ul>
+
+<p>Subtotal: <%= @order.subtotal %></p>
+<p>GST: <%= @order.gst %></p>
+<p>PST: <%= @order.pst %></p>
+<p>HST: <%= @order.hst %></p>
+<p>Grand Total: <%= @order.total %></p>
+
+<%= button_to "Pay with Credit Card",
+              checkout_path(order_id: @order.id),
+              method: :post %>

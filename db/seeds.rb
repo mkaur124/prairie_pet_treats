@@ -4,6 +4,25 @@ require 'faker'
 
 puts "Seeding database..."
 
+provinces = [
+  { name: "Alberta", gst: 5.0, pst: 0.0, hst: 0.0 },
+  { name: "British Columbia", gst: 5.0, pst: 7.0, hst: 0.0 },
+  { name: "Manitoba", gst: 5.0, pst: 7.0, hst: 0.0 },
+  { name: "New Brunswick", gst: 0.0, pst: 0.0, hst: 15.0 },
+  { name: "Newfoundland and Labrador", gst: 0.0, pst: 0.0, hst: 15.0 },
+  { name: "Nova Scotia", gst: 0.0, pst: 0.0, hst: 15.0 },
+  { name: "Ontario", gst: 0.0, pst: 0.0, hst: 13.0 },
+  { name: "Prince Edward Island", gst: 0.0, pst: 0.0, hst: 15.0 },
+  { name: "Quebec", gst: 5.0, pst: 9.975, hst: 0.0 },
+  { name: "Saskatchewan", gst: 5.0, pst: 6.0, hst: 0.0 }
+]
+
+provinces.each do |province|
+  Province.find_or_create_by!(province)
+end
+
+puts "Provinces seeded!"
+
 # Clear existing products and reset SQLite autoincrement
 Product.destroy_all
 if ActiveRecord::Base.connection.adapter_name == "SQLite"

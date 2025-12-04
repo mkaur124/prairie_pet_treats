@@ -1,0 +1,11 @@
+<% if defined?(breadcrumbs) && breadcrumbs.present? %>
+  <ul class="breadcrumb">
+    <% breadcrumbs.each_with_index do |crumb, index| %>
+      <% if index == breadcrumbs.length - 1 %>
+        <li class="active"><%= crumb[:name] %></li>
+      <% else %>
+        <li><%= link_to crumb[:name], crumb[:path] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

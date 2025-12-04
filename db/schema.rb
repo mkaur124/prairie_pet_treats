@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_04_023119) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -78,6 +78,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
     t.string "province"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "province_id"
+    t.index ["province_id"], name: "index_customers_on_province_id"
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -87,6 +94,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "product_name"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -98,16 +106,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
     t.decimal "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "gst"
+    t.decimal "pst"
+    t.decimal "hst"
+    t.string "status"
+    t.integer "status_int", default: 0, null: false
+    t.string "stripe_payment_intent_id"
+    t.string "stripe_charge_id"
+    t.string "stripe_session_id"
+    t.json "order_snapshot", default: {}
+    t.boolean "paid"
+    t.string "payment_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
-  end
-
-  create_table "pages", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
   create_table "products", force: :cascade do |t|
@@ -118,7 +128,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.string "image_url"
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.decimal "gst"
+    t.decimal "pst"
+    t.decimal "hst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "static_pages", force: :cascade do |t|
@@ -144,6 +164,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_060124) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "customers", "provinces"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
