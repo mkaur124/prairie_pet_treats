@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_04_023119) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_04_050817) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -120,6 +120,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_023119) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
+  create_table "product_tags", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_tags_on_product_id"
+    t.index ["tag_id"], name: "index_product_tags_on_tag_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -150,6 +159,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_023119) do
     t.index ["slug"], name: "index_static_pages_on_slug", unique: true
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -168,5 +183,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_04_023119) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
+  add_foreign_key "product_tags", "products"
+  add_foreign_key "product_tags", "tags"
   add_foreign_key "products", "categories"
 end

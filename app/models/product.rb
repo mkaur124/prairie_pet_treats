@@ -6,6 +6,10 @@ class Product < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
+  #Many-to-Many with Tags
+  has_many :product_tags, dependent: :destroy
+  has_many :tags, through: :product_tags
+
   # VALIDATIONS
   validates :name, presence: true
   validates :description, presence: true

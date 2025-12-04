@@ -31,7 +31,35 @@ class ProductsController < ApplicationController
                          .page(params[:page])
                          .per(20)
   end
+
   def show
     @product = Product.find(params[:id])
+  end
+
+  # --- Added create action with custom flash + session ---
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      # Store last created product in session
+      session[:last_created_product] = @product.name
+
+      # Custom flash message
+      flash[:custom_message] = "Product '#{@product.name}' created! Last product: #{session[:last_created_product]}"
+
+      redirect_to @product
+    else
+      flash[:custom_message] = "Failed to create product."
+      render :new
+    end
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :description, :price, :category_id)
   end
 end
